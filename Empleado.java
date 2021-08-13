@@ -1,77 +1,37 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Empleado {
     private int id;
-    public String nombre;
-    public String apellido;
-    public int comision;
-    public int horasExtra;
-    public double salario;
-    public static double nomina = 0.0;
+    private final String nombre;
+    private final String apellido;
+    private static ArrayList<Auto> autos = new ArrayList<>();
+    
+    private final int salario;
+    static double nomina = 0.0;
 
-    public Empleado(String nombre, String apellido, int comision, int horasExtra, int salario) {
+    
+    
+
+    public Empleado(String nombre, String apellido,int salario) {
 
         this.nombre = nombre;
         this.apellido = apellido;
-        this.comision = comision;
-        this.horasExtra = horasExtra;
-        this.salario = salario;
-
-    }
-
-    public int getId(){
-        return id;
-    }
-
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getNombre(){
-        return nombre;
-    }
-
-    public void setNombre(String nombre){
-        this.nombre= nombre;
-    }
-
-    public String getApellido(){
-        return apellido;
-    }
-
-    public void setApellido(String apellido){
-        this.apellido = apellido;
-    }
-
-    public int getComision(){
-        return comision;
-    }
-
-    public void setComision(int comision){
-        this.comision = comision;
-    }
-
-    public int getHorasextra(){
-        return horasExtra;
-    }
-
-    public void setHorasextra(int horasExtra){
-        this.horasExtra = horasExtra;
-    }
-
-    public int getSalario(){
-        return horasExtra;
-    }
-
-    public void setSalario(double salario){
-        this.salario = salario;
-    }
-
-    public static double calcularMiNomina(Empleado empleado){
         
-        nomina = empleado.getComision() + empleado.getHorasextra() + empleado.salario;
+        this.salario = salario;
+        
+
+        
+
+    }
+
+    public static double calcularMiNomina(Empleado empleado, Auto auto){
+        
+        nomina = empleado.salario + Auto.Bono(auto);
         double total = nomina - 2 * (nomina * 0.04);
-        System.out.print("Nomina " + total);
+        
+        
+        
         return total;
     }
 
@@ -80,18 +40,40 @@ public class Empleado {
     public static void main(String[] args) {
 
         Scanner usuario = new Scanner(System.in);
-        String id = usuario.nextLine();
+
+        System.out.println("Id");
+        int id = usuario.nextInt();
+
+        System.out.println("Nombre");
         String nombre = usuario.nextLine();
+
+        System.out.println("Apellido");
         String apellido = usuario.nextLine();
-        String comision = usuario.nextLine();
-        String horasExtra = usuario.nextLine();
 
-        Empleado.nomina = calcularMiNomina(null);
 
+        System.out.println("Digite la marca: ");
+
+        String marca = usuario.nextLine();
+
+       
+        int salario = 1875000;
+
+        
+        
+
+
+        Empleado Liquidacion = new Empleado(nombre, apellido,salario);
+        Auto carac = new Auto(marca, 1);
+        
+        System.out.println("El salario de " + Liquidacion.nombre + Liquidacion.apellido +  " es " + calcularMiNomina(Liquidacion,carac));
         usuario.close();
+
+        System.out.println(autos);
 
         
     }
+
+    
 
     
 }
