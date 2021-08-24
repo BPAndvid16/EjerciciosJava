@@ -9,7 +9,7 @@ public class Empleado {
     
 
     private static ArrayList<Auto> autos = new ArrayList<>();
-    static  int salario ;
+    private static  int salario ;
     
     static double nomina = 0.0;
 
@@ -27,9 +27,6 @@ public class Empleado {
         
         
     }
-
-    
-
 
    
     public void setAutos(ArrayList<Auto> autos)
@@ -102,7 +99,6 @@ public class Empleado {
 
         System.out.println("Ingrese su salario: ");
         int salario = usuario.nextInt();
-        
 
 
         Boolean autoSelect = true;

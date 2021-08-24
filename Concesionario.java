@@ -17,7 +17,7 @@ class Concesionario {
         Calendar inicio = new GregorianCalendar();
         Calendar fin = new GregorianCalendar();
         double nomina = Empleado.calcularMiNomina(empleado);
-        
+        int salario = 1875000;
         try {
             inicio.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(ingreso));
         } catch (ParseException e) {
@@ -33,8 +33,8 @@ class Concesionario {
         int difA = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR);
         int difM = difA * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH);
         
-        double nominaNormal = empleado.salario * difM ;
-        double nominaBonos = nomina - empleado.salario;
+        double nominaNormal = salario * difM ;
+        double nominaBonos = nomina - salario;
 
         double total = nominaNormal + nominaBonos;
 
@@ -47,7 +47,7 @@ class Concesionario {
         double nomina = Empleado.calcularMiNomina(empleado);
         Calendar inicio = new GregorianCalendar();
         Calendar fin = new GregorianCalendar();
-        
+        int salario = 1875000;
         try {
             inicio.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(ingreso));
         } catch (ParseException e) {
@@ -65,13 +65,14 @@ class Concesionario {
 
         
 
-        double deducciones =  2 * (empleado.salario * 0.04) * difM ;
-        double deduccionesAutos = 2 * ((nomina-empleado.salario) * 0.04);
+        double deducciones =  2 * (salario * 0.04) * difM ;
+        double deduccionesAutos = 2 * ((nomina-salario) * 0.04);
        
 
         double total =  deducciones + deduccionesAutos;
         
-        
+        System.out.println(ingreso);
+        System.out.println(retiro);
       
         return total;
     }
