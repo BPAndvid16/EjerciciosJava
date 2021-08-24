@@ -9,7 +9,7 @@ public class Empleado {
     
 
     private static ArrayList<Auto> autos = new ArrayList<>();
-    private static  int salario ;
+    static  int salario ;
     
     static double nomina = 0.0;
 
@@ -25,7 +25,11 @@ public class Empleado {
         
        
         
+        
     }
+
+    
+
 
    
     public void setAutos(ArrayList<Auto> autos)
@@ -47,7 +51,7 @@ public class Empleado {
         for (int i = 0; i < autos.size(); i++) {
 
             saldoAutos += Auto.Bono(autos.get(i));
-            System.out.println(Auto.Bono(autos.get(i)));
+           // System.out.println(Auto.Bono(autos.get(i)));
 
           }
         
@@ -96,6 +100,10 @@ public class Empleado {
         System.out.println("Ingrese el dia final: ");
         int diaFinal = usuario.nextInt();
 
+        System.out.println("Ingrese su salario: ");
+        int salario = usuario.nextInt();
+        
+
 
         Boolean autoSelect = true;
        
@@ -136,10 +144,12 @@ public class Empleado {
            
            
            Empleado Liquidacion = new Empleado(nombre, apellido,salario);
+           double calculoNomina = Concesionario.calcularPagos(Liquidacion, anioInicio + "-" + mesInicio + "-" + diaInicio, anioFinal + "-" + mesFinal + "-" + diaFinal) + (Math.abs(diaFinal-diaInicio) * salario / 30);
+           double calculoDeducciones = Concesionario.calcularDeducciones(Liquidacion, anioInicio + "-" + mesInicio + "-" + diaInicio, anioFinal + "-" + mesFinal + "-" + diaFinal) + 2*((Math.abs(diaFinal-diaInicio) * salario / 30)*0.04);
 
-           System.out.print(Concesionario.calcularPagos(Liquidacion, Integer.toString(anioInicio) +"-"+ Integer.toString(mesInicio) +"-"+ Integer.toString(diaInicio), Integer.toString(anioFinal) + "-" + Integer.toString(mesFinal) + "-" + Integer.toString(diaFinal)));
-           System.out.print(Concesionario.calcularDeducciones(Liquidacion, Integer.toString(anioInicio) +"-"+ Integer.toString(mesInicio) +"-"+ Integer.toString(diaInicio), Integer.toString(anioFinal) + "-" + Integer.toString(mesFinal) + "-" + Integer.toString(diaFinal)));
-           System.out.print("El salario de " + Liquidacion.nombre + Liquidacion.apellido + " es de " + calcularMiNomina(Liquidacion) );
+           System.out.println("Nomina "+calculoNomina + " Deducciones " + calculoDeducciones);
+          
+           //System.out.print("El salario de " + Liquidacion.nombre + Liquidacion.apellido + " es de " + calcularMiNomina(Liquidacion) );
            autoSelect = false;
            usuario.close();
 
